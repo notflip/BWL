@@ -13,6 +13,8 @@
                 <input type="text" v-model="currentuser.id" disabled required>
 
                 <input type="text" name="name" v-model="activeUser.name" disabled required/>
+                <input type="text" name="name" v-model="activeUser.nickname" disabled required/>
+
                 <input type="number" name="credits" v-model="activeUser.credits" min="1"/>
                 <span>{{ creditsmoney }}&euro;</span>
 
@@ -27,7 +29,11 @@
 
                 <input type="text" v-model="currentuser.id" disabled required>
 
+                <label>Name</label>
                 <input type="text" name="name" v-model="user.name" required/>
+                <label>Nickname</label>
+                <input type="text" name="name" v-model="user.nickname" />
+
                 <input type="number" name="credits" v-model="user.credits" min="1"/>
                 <span>{{ creditsmoney }}&euro;</span>
 
@@ -54,6 +60,7 @@
                 price: 2,
                 user: {
                     name: '',
+                    nickname: '',
                     credits: 1
                 }
             }
@@ -93,6 +100,7 @@
                     let uid = this.currentuser.id;
                     let data = {
                         name: this.activeUser ? this.activeUser.name : this.user.name,
+                        nickname: this.activeUser ? this.activeUser.nickname : (this.user.nickname ? this.user.nickname : this.user.name),
                         credits: this.activeUser ? this.activeUser.credits : this.user.credits,
                         shots: this.activeUser ? this.activeUser.shots : 0
                     };
