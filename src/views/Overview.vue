@@ -1,33 +1,36 @@
 <template>
-    <div>
-        <h1>Overview</h1>
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="column">
+                <table class="ui celled table">
 
-        <div>
-            <table border="1">
-                <transition-group name="flip-list" tag="tbody">
-                    <tr v-for="user in getUsers" :key="user['.key']">
-                        <td>
-                            {{ user.nickname}}<br>
-                            {{ user.name}}
-                        </td>
-                        <td>
-                            {{ user.shots }} 🍷
-                        </td>
-                        <td>
-                            {{ new Date(user.last) | moment("from") }}
-                        </td>
-                    </tr>
-                </transition-group>
-            </table>
-
+                    <transition-group name="flip-list" tag="tbody">
+                        <tr v-for="user in getUsers" :key="user['.key']">
+                            <td>
+                                <img :src="generateAvatar(user)" />
+                            </td>
+                            <td>
+                                {{ user.nickname}}<br>
+                                {{ user.name}}
+                            </td>
+                            <td>
+                                {{ user.shots }} 🍷
+                            </td>
+                            <td>
+                                {{ new Date(user.last) | moment("from") }}
+                            </td>
+                        </tr>
+                    </transition-group>
+                </table>
+            </div>
         </div>
-
     </div>
 </template>
 
 <script>
 
     import {db} from '../firebase/firebase';
+    import * as toonavatar from 'cartoon-avatar';
 
     export default {
         firebase: {
@@ -42,6 +45,16 @@
                 return results.sort((a, b) => {
                     return b.shots - a.shots;
                 });
+            }
+        },
+        methods: {
+            generateRandomAvatarNumber(user) {
+                let numeric = user['.key'].replace(/[^0-9\-]/g,'').trim();
+                return numeric.substring(2,3);
+            },
+            generateAvatar(user) {
+                let gender = user.gender === 'm' ? 'male' : 'female';
+                return toonavatar.generate_avatar({"gender": gender, "id": this.generateRandomAvatarNumber(user)});
             }
         }
     }

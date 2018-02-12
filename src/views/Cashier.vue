@@ -15,6 +15,11 @@
                 <input type="text" name="name" v-model="activeUser.name" disabled required/>
                 <input type="text" name="name" v-model="activeUser.nickname" disabled required/>
 
+                <input type="radio" id="a-male" value="m" v-model="activeUser.gender">
+                <label for="a-male">Male</label>
+                <input type="radio" id="a-female" value="f" v-model="activeUser.gender">
+                <label for="a-female">Female</label>
+
                 <input type="number" name="credits" v-model="activeUser.credits" min="1"/>
                 <span>{{ creditsmoney }}&euro;</span>
 
@@ -32,7 +37,12 @@
                 <label>Name</label>
                 <input type="text" name="name" v-model="user.name" required/>
                 <label>Nickname</label>
-                <input type="text" name="name" v-model="user.nickname" />
+                <input type="text" name="name" v-model="user.nickname"/>
+
+                <input type="radio" id="u-male" value="m" v-model="user.gender">
+                <label for="u-male">Male</label>
+                <input type="radio" id="u-female" value="f" v-model="user.gender">
+                <label for="u-female">Female</label>
 
                 <input type="number" name="credits" v-model="user.credits" min="1"/>
                 <span>{{ creditsmoney }}&euro;</span>
@@ -61,6 +71,7 @@
                 user: {
                     name: '',
                     nickname: '',
+                    gender: 'm',
                     credits: 1
                 }
             }
@@ -103,7 +114,8 @@
                         nickname: this.activeUser ? this.activeUser.nickname : (this.user.nickname ? this.user.nickname : this.user.name),
                         credits: this.activeUser ? this.activeUser.credits : this.user.credits,
                         shots: this.activeUser ? this.activeUser.shots : 0,
-                        last: this.activeUser ? this.activeUser.last : null
+                        last: this.activeUser ? this.activeUser.last : null,
+                        gender: this.activeUser ? this.activeUser.gender : this.user.gender
                     };
 
                     this.$firebaseRefs.users.child(uid).set(data);

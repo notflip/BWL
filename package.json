@@ -8,6 +8,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "cartoon-avatar": "^1.0.2",
     "firebase": "^4.9.1",
     "jquery": "^3.3.1",
     "semantic-ui-sass": "^2.2.11",
