@@ -1,3 +1,8 @@
+$icons-font-path: '/node_modules/semantic-ui-sass/icons';
+$flags-image-path: '/node_modules/semantic-ui-sass/images';
+
+@import "~semantic-ui-sass/semantic-ui.scss";
+
 body {
   background: #222;
   color: white;
