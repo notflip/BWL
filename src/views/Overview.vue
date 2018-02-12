@@ -3,9 +3,23 @@
         <h1>Overview</h1>
 
         <div>
-            <transition-group name="flip-list" tag="ul">
-                <li v-for="user in getUsers" :key="user['.key']">{{ user.name}} {{ user.shots }} {{ user.last }}</li>
-            </transition-group>
+            <table border="1">
+                <transition-group name="flip-list" tag="tbody">
+                    <tr v-for="user in getUsers" :key="user['.key']">
+                        <td>
+                            {{ user.nickname}}<br>
+                            {{ user.name}}
+                        </td>
+                        <td>
+                            {{ user.shots }} 🍷
+                        </td>
+                        <td>
+                            {{ user.last }}
+                        </td>
+                    </tr>
+                </transition-group>
+            </table>
+
         </div>
 
     </div>
@@ -21,7 +35,11 @@
         },
         computed: {
             getUsers() {
-                return this.users.sort((a, b) => {
+                let results = this.users.filter(user => {
+                    return user.shots >= 1;
+                });
+
+                return results.sort((a, b) => {
                     return b.shots - a.shots;
                 });
             }
