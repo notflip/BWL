@@ -93,7 +93,8 @@
                     let uid = this.currentuser.id;
                     let data = {
                         name: this.activeUser ? this.activeUser.name : this.user.name,
-                        credits: this.activeUser ? this.activeUser.credits : this.user.credits
+                        credits: this.activeUser ? this.activeUser.credits : this.user.credits,
+                        shots: this.activeUser ? this.activeUser.shots : 0
                     };
 
                     this.$firebaseRefs.users.child(uid).set(data);
