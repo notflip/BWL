@@ -102,7 +102,8 @@
                         name: this.activeUser ? this.activeUser.name : this.user.name,
                         nickname: this.activeUser ? this.activeUser.nickname : (this.user.nickname ? this.user.nickname : this.user.name),
                         credits: this.activeUser ? this.activeUser.credits : this.user.credits,
-                        shots: this.activeUser ? this.activeUser.shots : 0
+                        shots: this.activeUser ? this.activeUser.shots : 0,
+                        last: this.activeUser ? this.activeUser.last : null
                     };
 
                     this.$firebaseRefs.users.child(uid).set(data);
