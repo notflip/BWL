@@ -13,7 +13,7 @@
                 <input type="text" v-model="currentuser.id" disabled required>
                 <input type="text" name="name" v-model="findUserById(currentuser.id).name" disabled required />
 
-                <input type="number" name="shots" v-model="amount" min="1" />
+                <input type="number" name="shots" v-model="amount" min="1" :max="findUserById(currentuser.id).credits" />
                 <button type="submit">Send</button>
 
             </form>
