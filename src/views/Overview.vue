@@ -2,22 +2,25 @@
     <div class="ui container">
         <div class="ui grid">
             <div class="column">
-                <table class="ui celled table">
+                <table class="ui very basic table">
 
                     <transition-group name="flip-list" tag="tbody">
-                        <tr v-for="user in getUsers" :key="user['.key']">
+                        <tr v-for="(user, index) in getUsers" :key="user['.key']">
                             <td>
-                                <img class="ui tiny rounded image" :src="generateAvatar(user)" />
+                                <h2 class="ui image header">
+                                    <h3>{{ index + 1 }}</h3>
+                                    <img class="ui rounded image" :src="avatar(user)" />
+                                    <div class="content">
+                                        {{ user.nickname}}
+                                        <div class="sub header">{{ user.name }}</div>
+                                    </div>
+                                </h2>
                             </td>
-                            <td>
-                                {{ user.nickname}}<br>
-                                {{ user.name}}
+                            <td v-if="user.shots" class="center aligned">
+                                <h1>{{ user.shots }}</h1>
                             </td>
-                            <td>
-                                {{ user.shots }} 🍷
-                            </td>
-                            <td>
-                                {{ new Date(user.last) | moment("from") }}
+                            <td v-if="user.last" class="center aligned">
+                                <h3>{{ new Date(user.last) | moment("from") }}</h3>
                             </td>
                         </tr>
                     </transition-group>
@@ -30,7 +33,6 @@
 <script>
 
     import {db} from '../firebase/firebase';
-    import * as toonavatar from 'cartoon-avatar';
 
     export default {
         firebase: {
@@ -38,18 +40,14 @@
         },
         computed: {
             getUsers() {
-                let results = this.users.filter(user => {
-                    return user.shots >= 1;
-                });
-
-                return results.sort((a, b) => {
+                return this.users.sort((a, b) => {
                     return b.shots - a.shots;
                 });
             }
         },
         methods: {
-            generateAvatar(user) {
-                return 'https://api.adorable.io/avatars/80/'+ user['.key'] +'.png'
+            avatar(user) {
+                return 'https://api.adorable.io/avatars/60/'+ user['.key'] +'.png'
             }
         }
     }

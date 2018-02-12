@@ -56,7 +56,7 @@
 
                 let user = this.findUserById(this.currentuser.id);
 
-                if(user.credits < this.amount) {
+                if(parseInt(user.credits) < this.amount) {
                     return false;
                 }
 
