@@ -14,7 +14,7 @@
                             {{ user.shots }} 🍷
                         </td>
                         <td>
-                            {{ user.last }}
+                            {{ new Date(user.last) | moment("from") }}
                         </td>
                     </tr>
                 </transition-group>
