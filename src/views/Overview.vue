@@ -7,7 +7,7 @@
                     <transition-group name="flip-list" tag="tbody">
                         <tr v-for="user in getUsers" :key="user['.key']">
                             <td>
-                                <img :src="generateAvatar(user)" />
+                                <img class="ui tiny rounded image" :src="generateAvatar(user)" />
                             </td>
                             <td>
                                 {{ user.nickname}}<br>
@@ -48,13 +48,8 @@
             }
         },
         methods: {
-            generateRandomAvatarNumber(user) {
-                let numeric = user['.key'].replace(/[^0-9\-]/g,'').trim();
-                return numeric.substring(2,3);
-            },
             generateAvatar(user) {
-                let gender = user.gender === 'm' ? 'male' : 'female';
-                return toonavatar.generate_avatar({"gender": gender, "id": this.generateRandomAvatarNumber(user)});
+                return 'https://api.adorable.io/avatars/80/'+ user['.key'] +'.png'
             }
         }
     }
