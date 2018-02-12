@@ -66,11 +66,15 @@
                     timestamp: Date.now()
                 };
 
+                // Push the new shots and remove the current card
                 this.$firebaseRefs.shots.push(data);
                 this.$firebaseRefs.currentuser.remove();
 
+                // Update the user to reduce his/her credits and increase the amount of shots and last shot
                 const updatedUser = {...user};
                 updatedUser.credits = user.credits - this.amount;
+                updatedUser.shots = parseInt(updatedUser.shots) + parseInt(this.amount);
+                updatedUser.last = Date.now();
 
                 delete updatedUser['.key'];
                 this.$firebaseRefs.users.child(user['.key']).set(updatedUser);
