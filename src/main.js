@@ -4,6 +4,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+require('./assets/sass/app.scss');
+
 Vue.use(require('vue-moment'));
 Vue.use(VueFire);
 
