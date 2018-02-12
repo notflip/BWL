@@ -122,6 +122,8 @@
                     this.$firebaseRefs.currentuser.remove();
 
                     this.user.name = '';
+                    this.user.nickname = '';
+                    this.user.gender = 'm';
                     this.user.credits = 0;
                 }
             }
