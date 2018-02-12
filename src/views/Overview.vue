@@ -3,9 +3,9 @@
         <h1>Overview</h1>
 
         <div>
-            <ul>
-                <li v-for="user in users">{{ user.name}} {{ user.shots }} {{ user.last }}</li>
-            </ul>
+            <transition-group name="flip-list" tag="ul">
+                <li v-for="user in getUsers" :key="user['.key']">{{ user.name}} {{ user.shots }} {{ user.last }}</li>
+            </transition-group>
         </div>
 
     </div>
@@ -18,6 +18,19 @@
     export default {
         firebase: {
             users: db.ref('users')
+        },
+        computed: {
+            getUsers() {
+                return this.users.sort((a, b) => {
+                    return b.shots - a.shots;
+                });
+            }
         }
     }
 </script>
+
+<style>
+    .flip-list-move {
+        transition: transform 1s;
+    }
+</style>
