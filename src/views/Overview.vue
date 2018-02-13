@@ -45,7 +45,7 @@
           Notifier
         },
         firebase: {
-            users: db.ref('users')
+            users: db.ref('users').orderByChild('shots').limitToLast(10)
         },
         computed: {
             getUsers() {
