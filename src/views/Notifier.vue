@@ -35,6 +35,7 @@
         data() {
             return {
                 users: [],
+                previous: 0,
                 amountModal: {
                     show: false,
                     text: '',
@@ -49,18 +50,20 @@
             this.$watch;
         },
         watch: {
-            users(users, old) {
+            users(users) {
 
                 // Get the total number of shots
                 let totalShots = users.reduce((total, user) => {
                     return Number(total) + Number(user.shots);
                 }, 0);
 
-                if (totalShots % 5 === 0 && totalShots >= 5) {
+                if (totalShots !== this.previous && totalShots % 5 === 0 && totalShots >= 5) {
                     this.amountModal.show = true;
                     this.amountModal.text = totalShots + ' shots gepasseerd. Keep it up';
                     this.amountModal.subtext = texts[Math.floor(Math.random() * texts.length)];
                 }
+
+                this.previous = totalShots;
 
                 setTimeout(() => {
                     this.amountModal.show = false;
