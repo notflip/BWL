@@ -5,7 +5,6 @@ $flags-image-path: '/node_modules/semantic-ui-sass/images';
 
 body {
   background: #222;
-  color: white;
 }
 
 #app {
@@ -30,4 +29,24 @@ table.table {
     color: rgba(255,255,255, .3);
   }
 
+}
+
+/* Modal */
+.ui.dimmer {
+  opacity: 1;
+}
+.ui.modal {
+  background: transparent;
+
+  .content {
+    background: transparent;
+  }
+}
+
+.ui.icon.header {
+  display: block;
+}
+
+h1.ui.header {
+  font-size: 3rem;
 }
