@@ -5,9 +5,13 @@
             <h1 class="ui yellow icon header">
                 <i class="massive trophy icon"></i>
                 <div class="content">
-                    {{ amountModal.text }}
+                    {{ amountModal.text }}<br>
                 </div>
             </h1>
+
+            <h2 class="ui yellow icon header">
+                <span class="subtext">{{ amountModal.subtext}}</span>
+            </h2>
 
         </template>
     </Modal>
@@ -18,6 +22,12 @@
     import {db} from '../firebase/firebase';
     import Modal from '../components/Modal.vue';
 
+    const texts = [
+        'Op u muileke',
+        'Goé bezig amigos',
+        'Nie neute nie pleuje'
+    ];
+
     export default {
         components: {
             Modal
@@ -27,7 +37,8 @@
                 users: [],
                 amountModal: {
                     show: false,
-                    text: ''
+                    text: '',
+                    subtext: ''
                 }
             }
         },
@@ -47,12 +58,15 @@
 
                 if (totalShots % 5 === 0 && totalShots >= 5) {
                     this.amountModal.show = true;
-                    this.amountModal.text = totalShots + ' shots have passed the counter';
+                    this.amountModal.text = totalShots + ' shots gepasseerd. Keep it up';
+                    this.amountModal.subtext = texts[Math.floor(Math.random() * texts.length)];
                 }
+
+                setTimeout(() => {
+                    this.amountModal.show = false;
+                }, 10000)
             }
         },
-        methods: {
-
-        }
+        methods: {}
     }
 </script>
