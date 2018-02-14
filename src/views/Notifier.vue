@@ -58,8 +58,12 @@
         watch: {
             shots(shots) {
 
+                console.log('x');
+
                 // If the Modal is not currently open
                 if(!this.modal.show) {
+
+                    console.log('y');
                     // Get the highest amount of shots bought
                     let highestShot = shots.reduce((max, shot) => shot.amount > max ? shot : max, 0);
 

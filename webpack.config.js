@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var os = require('os');
 
 module.exports = {
     entry: './src/main.js',
@@ -76,9 +77,11 @@ module.exports = {
         extensions: ['*', '.js', '.vue', '.json']
     },
     devServer: {
+        host: os.hostname().toLowerCase(),
         historyApiFallback: true,
         noInfo: true,
-        overlay: true
+        overlay: true,
+        // disableHostCheck
     },
     performance: {
         hints: false

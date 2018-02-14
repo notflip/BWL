@@ -19,17 +19,6 @@
                     <input type="text" name="name" v-model="activeUser.nickname" disabled required/>
                 </div>
 
-                <div class="inline fields">
-                    <div class="field">
-                        <input type="radio" id="a-male" value="m" v-model="activeUser.gender">
-                        <label for="a-male">Male</label>
-                    </div>
-                    <div class="field">
-                        <input type="radio" id="a-female" value="f" v-model="activeUser.gender">
-                        <label for="a-female">Female</label>
-                    </div>
-                </div>
-
                 <div class="field">
                     <input type="number" name="credits" v-model="activeUser.credits" min="1"/>
                     <div class="ui label">
@@ -52,11 +41,6 @@
                 <input type="text" name="name" v-model="user.name" required/>
                 <label>Nickname</label>
                 <input type="text" name="name" v-model="user.nickname"/>
-
-                <input type="radio" id="u-male" value="m" v-model="user.gender">
-                <label for="u-male">Male</label>
-                <input type="radio" id="u-female" value="f" v-model="user.gender">
-                <label for="u-female">Female</label>
 
                 <input type="number" name="credits" v-model="user.credits" min="1"/>
                 <span>{{ creditsmoney }}&euro;</span>
@@ -109,7 +93,6 @@
                 user: {
                     name: '',
                     nickname: '',
-                    gender: 'm',
                     credits: 1
                 }
             }
@@ -164,7 +147,6 @@
                         credits: this.activeUser ? this.activeUser.credits : this.user.credits,
                         shots: this.activeUser ? this.activeUser.shots : 0,
                         last: this.activeUser ? this.activeUser.last : 0,
-                        gender: this.activeUser ? this.activeUser.gender : this.user.gender
                     };
 
                     this.$firebaseRefs.users.child(uid).set(data);
@@ -172,7 +154,6 @@
 
                     this.user.name = '';
                     this.user.nickname = '';
-                    this.user.gender = 'm';
                     this.user.credits = 0;
                 }
             }
