@@ -62,7 +62,7 @@
 
                 let data = {
                     userid: user['.key'],
-                    amount: this.amount,
+                    amount: Number( this.amount),
                     timestamp: Date.now()
                 };
 
