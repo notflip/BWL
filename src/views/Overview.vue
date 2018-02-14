@@ -20,8 +20,8 @@
                                         </div>
                                     </h2>
                                 </td>
-                                <td v-if="user.shots" class="center aligned">
-                                    <h1>{{ user.shots }}</h1>
+                                <td class="center aligned">
+                                    <h1 v-if="user.shots">{{ user.shots }}</h1>
                                 </td>
                                 <td v-if="user.last" class="right aligned">
                                     <h3>{{ new Date(user.last) | moment("from") }}</h3>
