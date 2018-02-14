@@ -91,7 +91,7 @@
                     this.modal.show = true;
                     this.modal.text = totalShots + ' shots gepasseerd. Keep it up';
                     this.modal.subtext = texts[Math.floor(Math.random() * texts.length)];
-                    this.modal.color = 'white';
+                    this.modal.color = 'inverted';
                 }
 
                 this.previous.total = totalShots;

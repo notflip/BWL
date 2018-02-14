@@ -5,13 +5,13 @@ $flags-image-path: '/node_modules/semantic-ui-sass/images';
 
 .background {
   position: relative;
-  background: #222;
+  background: #000;
   height: 100%;
 
   .logo {
     position: absolute;
-    right: 50px;
-    bottom: 50px;
+    right: 75px;
+    bottom: 75px;
 
     svg path {
       fill: white
@@ -60,5 +60,5 @@ table.table {
 }
 
 h1.ui.header {
-  font-size: 4rem;
+  font-size: 3.5rem;
 }
