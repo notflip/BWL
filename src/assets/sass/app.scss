@@ -79,25 +79,30 @@ $flags-image-path: '/node_modules/semantic-ui-sass/images';
 }
 
 /* Modal */
-.ui.dimmer {
-  opacity: 1;
-}
-
 .ui.modal {
   background: transparent;
   box-shadow: none;
 
   .content {
     background: transparent;
+    .subtext {
+      font-size: 3rem;
+      line-height: 4rem;
+      color: rgba(255,255,255,.5);
+    }
+  }
+
+  h1 {
+    font-size: 4.5rem;
+  }
+
+  .ui.header > .icon + .content {
+    padding-left: 2rem;
   }
 }
 
-.ui.icon.header {
-  display: block;
-}
-
-.ui.header > img + .content, .ui.header > .image + .content {
-  padding-left: 2rem;
+.ui.dimmer {
+  opacity: 1;
 }
 
 /* Anims */
