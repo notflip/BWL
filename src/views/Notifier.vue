@@ -52,50 +52,25 @@
         },
         created() {
             this.$watch;
+
+            // Check Credits every 5 minutes
+            setInterval(this.checkUsersWithoutCredits, (5000));
         },
         watch: {
             shots(shots) {
 
-                // If the Modal is not currently open
-                if(!this.modal.show) {
+                let highestShot = shots.reduce((max, shot) => {
+                    return shot.amount > max.amount ? shot : max;
+                }, {amount: 0});
 
-                    // Get the highest amount of shots bought
-                    let highestShot = shots.reduce((max, shot) => {
-                        return shot.amount > max.amount ? shot : max;
-                    }, {amount: 0});
-
-                    // If the amount of shots is different from the previous, show the modal
+                if (!this.modal.show) {
                     if (highestShot.amount !== this.previous.highest && highestShot.amount > 1) {
                         this.modal.show = true;
-                        this.modal.text = 'Nieuw Record!<br>' + highestShot.amount + ' shots besteld door <br><span class="capitalize">'+ this.findUserById(highestShot.userid).nickname +'</span>';
+                        this.modal.text = 'Nieuw Record!<br>' + highestShot.amount + ' shots besteld door <br><span class="capitalize">' + this.findUserById(highestShot.userid).nickname + '</span>';
                         this.modal.color = 'yellow';
-
-                        this.previous.highest = Number(highestShot.amount);
                     }
 
-                    setTimeout(() => {
-                        this.modal.show = false;
-                    }, 10000)
-                }
-
-            },
-            users(users) {
-
-                if(!this.modal.show) {
-                    // Get the total number of shots
-                    let totalShots = users.reduce((total, user) => {
-                        return Number(total) + Number(user.shots);
-                    }, 0);
-
-                    // If the number of shots is different from the previous, show the modal
-                    if (totalShots !== this.previous.total && totalShots % 5 === 0 && totalShots >= 5) {
-                        this.modal.show = true;
-                        this.modal.text = totalShots + ' shots gepasseerd. Keep it up';
-                        this.modal.subtext = texts[Math.floor(Math.random() * texts.length)];
-                        this.modal.color = 'inverted';
-                    }
-
-                    this.previous.total = totalShots;
+                    this.previous.highest = Number(highestShot.amount);
 
                     setTimeout(() => {
                         this.modal.show = false;
@@ -103,10 +78,56 @@
                 }
             }
         },
+        users(users) {
+
+            let totalShots = users.reduce((total, user) => {
+                return Number(total) + Number(user.shots);
+            }, 0);
+
+            if (!this.modal.show) {
+                if (totalShots !== this.previous.total && totalShots % 5 === 0 && totalShots >= 5) {
+                    this.modal.show = true;
+                    this.modal.text = totalShots + ' shots gepasseerd. Keep it up';
+                    this.modal.subtext = texts[Math.floor(Math.random() * texts.length)];
+                    this.modal.color = 'inverted';
+                }
+
+                this.previous.total = Number(totalShots);
+
+                setTimeout(() => {
+                    this.modal.show = false;
+                }, 10000)
+            }
+        },
         methods: {
+            checkUsersWithoutCredits() {
+
+                if (!this.modal.show) {
+
+                    let usersWithoutCredits = this.users.filter((user) => {
+                        return user.credits === 0
+                    });
+
+                    let userWithMostCredits = this.users
+                        .filter((user) => user.credits > 0)
+                        .reduce((max, current) => current.credits > max.credits ? current : max, {credits: 0});
+
+
+                    if(userWithMostCredits.credits) {
+                        this.modal.show = true;
+                        this.modal.text = usersWithoutCredits[Math.floor(Math.random() * texts.length)].name + ' je shots zijn op';
+                        this.modal.subtext = ' vraag er wat aan ' + userWithMostCredits.name + '<br> hij heeft er genoeg!';
+                        this.modal.color = 'inverted';
+
+                        setTimeout(() => {
+                            this.modal.show = false;
+                        }, 4000)
+                    }
+                }
+            },
             findUserById(id) {
                 return this.users.find(user => user['.key'] === id);
-            },
+            }
         }
     }
 </script>
