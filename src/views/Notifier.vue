@@ -10,7 +10,7 @@
             </h1>
 
             <h2 class="ui icon header" :class="modal.color">
-                <span class="subtext">{{ modal.subtext}}</span>
+                <span class="subtext" v-html="modal.subtext"></span>
             </h2>
 
         </template>
@@ -23,9 +23,7 @@
     import Modal from '../components/Modal.vue';
 
     const texts = [
-        'Op u muileke',
-        'Goé bezig amigos',
-        'Nie neute nie pleuje'
+        '&quot;Alcohol may be man\'s worst enemy, but the bible says love your enemy&quot;'
     ];
 
     export default {
@@ -69,8 +67,7 @@
                     // If the amount of shots is different from the previous, show the modal
                     if (highestShot.amount !== this.previous.highest && highestShot.amount > 1) {
                         this.modal.show = true;
-                        this.modal.text = highestShot.amount + ' shots tegelijk besteld door <br>' + this.findUserById(highestShot.userid).name;
-                        this.modal.subtext = texts[Math.floor(Math.random() * texts.length)];
+                        this.modal.text = 'Nieuw Record!<br>' + highestShot.amount + ' shots besteld door <br><span class="capitalize">'+ this.findUserById(highestShot.userid).nickname +'</span>';
                         this.modal.color = 'yellow';
 
                         this.previous.highest = Number(highestShot.amount);
