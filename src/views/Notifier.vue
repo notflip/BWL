@@ -58,14 +58,13 @@
         watch: {
             shots(shots) {
 
-                console.log('x');
-
                 // If the Modal is not currently open
                 if(!this.modal.show) {
 
-                    console.log('y');
                     // Get the highest amount of shots bought
-                    let highestShot = shots.reduce((max, shot) => shot.amount > max ? shot : max, 0);
+                    let highestShot = shots.reduce((max, shot) => {
+                        return shot.amount > max.amount ? shot : max;
+                    });
 
                     // If the amount of shots is different from the previous, show the modal
                     if (highestShot.amount !== this.previous.highest && highestShot.amount > 1) {
@@ -73,9 +72,9 @@
                         this.modal.text = highestShot.amount + ' shots tegelijk besteld door <br>' + this.findUserById(highestShot.userid).name;
                         this.modal.subtext = texts[Math.floor(Math.random() * texts.length)];
                         this.modal.color = 'yellow';
-                    }
 
-                    this.previous.highest = highestShot.amount;
+                        this.previous.highest = Number(highestShot.amount);
+                    }
 
                     setTimeout(() => {
                         this.modal.show = false;
@@ -85,24 +84,26 @@
             },
             users(users) {
 
-                // Get the total number of shots
-                let totalShots = users.reduce((total, user) => {
-                    return Number(total) + Number(user.shots);
-                }, 0);
+                if(!this.modal.show) {
+                    // Get the total number of shots
+                    let totalShots = users.reduce((total, user) => {
+                        return Number(total) + Number(user.shots);
+                    }, 0);
 
-                // If the number of shots is different from the previous, show the modal
-                if (totalShots !== this.previous.total && totalShots % 5 === 0 && totalShots >= 5) {
-                    this.modal.show = true;
-                    this.modal.text = totalShots + ' shots gepasseerd. Keep it up';
-                    this.modal.subtext = texts[Math.floor(Math.random() * texts.length)];
-                    this.modal.color = 'inverted';
+                    // If the number of shots is different from the previous, show the modal
+                    if (totalShots !== this.previous.total && totalShots % 5 === 0 && totalShots >= 5) {
+                        this.modal.show = true;
+                        this.modal.text = totalShots + ' shots gepasseerd. Keep it up';
+                        this.modal.subtext = texts[Math.floor(Math.random() * texts.length)];
+                        this.modal.color = 'inverted';
+                    }
+
+                    this.previous.total = totalShots;
+
+                    setTimeout(() => {
+                        this.modal.show = false;
+                    }, 10000)
                 }
-
-                this.previous.total = totalShots;
-
-                setTimeout(() => {
-                    this.modal.show = false;
-                }, 10000)
             }
         },
         methods: {
