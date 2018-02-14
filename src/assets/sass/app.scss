@@ -3,8 +3,20 @@ $flags-image-path: '/node_modules/semantic-ui-sass/images';
 
 @import "~semantic-ui-sass/semantic-ui.scss";
 
-body {
+.background {
+  position: relative;
   background: #222;
+  height: 100%;
+
+  .logo {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+
+    svg path {
+      fill: white
+    }
+  }
 }
 
 #app {

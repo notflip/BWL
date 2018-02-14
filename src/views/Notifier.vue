@@ -1,16 +1,16 @@
 <template>
-    <Modal v-model="amountModal.show" content="amountModal.text">
+    <Modal v-model="modal.show">
         <template slot="content">
 
-            <h1 class="ui yellow icon header">
+            <h1 class="ui icon header" :class="modal.color">
                 <i class="massive trophy icon"></i>
                 <div class="content">
-                    {{ amountModal.text }}<br>
+                    <span v-html="modal.text"></span><br>
                 </div>
             </h1>
 
-            <h2 class="ui yellow icon header">
-                <span class="subtext">{{ amountModal.subtext}}</span>
+            <h2 class="ui icon header" :class="modal.color">
+                <span class="subtext">{{ modal.subtext}}</span>
             </h2>
 
         </template>
@@ -35,21 +35,50 @@
         data() {
             return {
                 users: [],
-                previous: 0,
-                amountModal: {
+                shots: [],
+                previous: {
+                    total: 0,
+                    highest: 0
+                },
+                modal: {
                     show: false,
                     text: '',
-                    subtext: ''
+                    subtext: '',
+                    color: ''
                 }
             }
         },
         firebase: {
-            users: db.ref('users')
+            users: db.ref('users'),
+            shots: db.ref('shots').orderByChild('amount')
         },
         created() {
             this.$watch;
         },
         watch: {
+            shots(shots) {
+
+                // If the Modal is not currently open
+                if(!this.modal.show) {
+                    // Get the highest amount of shots bought
+                    let highestShot = shots.reduce((max, shot) => shot.amount > max ? shot : max, 0);
+
+                    // If the amount of shots is different from the previous, show the modal
+                    if (highestShot.amount !== this.previous.highest && highestShot.amount > 1) {
+                        this.modal.show = true;
+                        this.modal.text = highestShot.amount + ' shots tegelijk besteld door <br>' + this.findUserById(highestShot.userid).name;
+                        this.modal.subtext = texts[Math.floor(Math.random() * texts.length)];
+                        this.modal.color = 'yellow';
+                    }
+
+                    this.previous.highest = highestShot.amount;
+
+                    setTimeout(() => {
+                        this.modal.show = false;
+                    }, 10000)
+                }
+
+            },
             users(users) {
 
                 // Get the total number of shots
@@ -57,19 +86,25 @@
                     return Number(total) + Number(user.shots);
                 }, 0);
 
-                if (totalShots !== this.previous && totalShots % 5 === 0 && totalShots >= 5) {
-                    this.amountModal.show = true;
-                    this.amountModal.text = totalShots + ' shots gepasseerd. Keep it up';
-                    this.amountModal.subtext = texts[Math.floor(Math.random() * texts.length)];
+                // If the number of shots is different from the previous, show the modal
+                if (totalShots !== this.previous.total && totalShots % 5 === 0 && totalShots >= 5) {
+                    this.modal.show = true;
+                    this.modal.text = totalShots + ' shots gepasseerd. Keep it up';
+                    this.modal.subtext = texts[Math.floor(Math.random() * texts.length)];
+                    this.modal.color = 'white';
                 }
 
-                this.previous = totalShots;
+                this.previous.total = totalShots;
 
                 setTimeout(() => {
-                    this.amountModal.show = false;
+                    this.modal.show = false;
                 }, 10000)
             }
         },
-        methods: {}
+        methods: {
+            findUserById(id) {
+                return this.users.find(user => user['.key'] === id);
+            },
+        }
     }
 </script>
