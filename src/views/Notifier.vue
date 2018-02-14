@@ -22,6 +22,10 @@
     import {db} from '../firebase/firebase';
     import Modal from '../components/Modal.vue';
 
+    const modalDuration = 15 * 1000; // 15 seconds
+    const modalTimeout = 30 * 1000 * 60; // 30 minutes
+    const modalMultiplier = 0.1;
+
     const texts = [
         '&quot;Alcohol may be man\'s worst enemy, but the bible says love your enemy&quot;'
     ];
@@ -55,8 +59,15 @@
             this.$watch;
 
             // Periodic Checks
-            setInterval(this.checkUsersWithoutCredits, 10000);
-            setInterval(this.checkTimeSinceLastShot, 5000);
+            setInterval(this.checkBestSupporter, modalTimeout * modalMultiplier);
+
+            // Periodic Check with Offset
+            let offset = setInterval(() => {
+                clearInterval(offset);
+                setInterval(this.checkTimeSinceLastShot, modalTimeout * modalMultiplier);
+            }, (modalTimeout / 2) * modalMultiplier);
+
+
         },
         watch: {
             shots(shots) {
@@ -76,7 +87,7 @@
 
                     setTimeout(() => {
                         this.modal.show = false;
-                    }, 10000)
+                    }, modalDuration * modalMultiplier)
                 }
             }
         },
@@ -98,7 +109,7 @@
 
                 setTimeout(() => {
                     this.modal.show = false;
-                }, 10000)
+                }, modalDuration * modalMultiplier)
             }
         },
         methods: {
@@ -111,37 +122,34 @@
                     if(lastShot.timestamp) {
                         this.modal.show = true;
                         this.modal.text = 'De laatste shot is al ' + this.$moment().to(lastShot.timestamp);
+                        this.modal.subtext = 'De bar verveelt zich te pletter';
                         this.modal.color = 'inverted';
 
                         setTimeout(() => {
                             this.modal.show = false;
-                        }, 4000)
+                        }, modalDuration * modalMultiplier)
                     }
 
                 }
             },
-            checkUsersWithoutCredits() {
+            checkBestSupporter() {
 
                 if (!this.modal.show) {
 
-                    let usersWithoutCredits = this.users.filter((user) => {
-                        return user.credits === 0
-                    });
+                    let bestSupporter = this.users
+                        .filter(user => user.credits > 0)
+                        .reduce((a, b) => a.credits > b.credits ? a : b);
 
-                    let userWithMostCredits = this.users
-                        .filter((user) => user.credits > 0)
-                        .reduce((max, current) => current.credits > max.credits ? current : max, {credits: 0});
-
-
-                    if(userWithMostCredits.credits) {
+                    if(bestSupporter) {
                         this.modal.show = true;
-                        this.modal.text = usersWithoutCredits[Math.floor(Math.random() * texts.length)].name + ' je shots zijn op';
-                        this.modal.subtext = ' vraag er wat aan ' + userWithMostCredits.name + '<br> hij heeft er genoeg!';
+                        this.modal.text = 'Onze beste supporter is momenteel ' + bestSupporter.name;
+                        this.modal.subtext = '';
+
                         this.modal.color = 'inverted';
 
                         setTimeout(() => {
                             this.modal.show = false;
-                        }, 4000)
+                        }, modalDuration * modalMultiplier)
                     }
                 }
             },
