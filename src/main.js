@@ -7,6 +7,8 @@ import store from './store'
 require('./assets/sass/app.scss');
 
 Vue.use(require('vue-moment'));
+import 'moment/locale/nl';
+
 Vue.use(VueFire);
 
 Vue.config.productionTip = false;

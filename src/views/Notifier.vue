@@ -51,10 +51,12 @@
             shots: db.ref('shots').orderByChild('amount')
         },
         created() {
+
             this.$watch;
 
-            // Check Credits every 5 minutes
-            setInterval(this.checkUsersWithoutCredits, (5000));
+            // Periodic Checks
+            setInterval(this.checkUsersWithoutCredits, 10000);
+            setInterval(this.checkTimeSinceLastShot, 5000);
         },
         watch: {
             shots(shots) {
@@ -100,6 +102,24 @@
             }
         },
         methods: {
+            checkTimeSinceLastShot() {
+
+                if (!this.modal.show) {
+
+                    let lastShot = this.shots.reduce((max, current) => current.timestamp > max.timestamp ? current : max, {timestamp: 0});
+
+                    if(lastShot.timestamp) {
+                        this.modal.show = true;
+                        this.modal.text = 'De laatste shot is al ' + this.$moment().to(lastShot.timestamp);
+                        this.modal.color = 'inverted';
+
+                        setTimeout(() => {
+                            this.modal.show = false;
+                        }, 4000)
+                    }
+
+                }
+            },
             checkUsersWithoutCredits() {
 
                 if (!this.modal.show) {
