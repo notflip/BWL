@@ -3,9 +3,9 @@
 	 x="0px" y="0px" width="45.6px" height="43.9px" viewBox="0 0 45.6 43.9" style="enable-background:new 0 0 45.6 43.9;"
 	 xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#0f2c5b;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st1{fill:#0f2c5b;stroke:#0f2c5b;stroke-miterlimit:10;}
-	.st2{fill:#0f2c5b;}
+	.st0{fill:none;stroke:rgba(19, 51, 104, .4);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st1{fill:rgba(19, 51, 104, .4);stroke:rgba(19, 51, 104, .4);stroke-miterlimit:10;}
+	.st2{fill:rgba(19, 51, 104, .4);}
 </style>
 <defs>
 </defs>
