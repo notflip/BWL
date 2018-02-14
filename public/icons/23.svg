@@ -1,0 +1,25 @@
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="53.5px" height="46.5px" viewBox="0 0 53.5 46.5" style="enable-background:new 0 0 53.5 46.5;"
+	 xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#0f2c5b;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st1{fill:#0f2c5b;}
+</style>
+<defs>
+</defs>
+<g>
+	<path class="st0" d="M18.7,3.3C16.6,1.8,14.1,1,11.5,1C3.7,1,1,8.2,1,17.1s2.7,16.1,10.5,16.1c3.1,0,5-0.8,7.3-2.7"/>
+	<path class="st0" d="M34.8,3.3C36.9,1.8,39.4,1,42,1c7.8,0,10.5,7.2,10.5,16.1S49.8,33.2,42,33.2c-3.1,0-4.8-1.1-7.1-2.9"/>
+	<g>
+		<circle class="st1" cx="16.8" cy="17.6" r="1.5"/>
+		<circle class="st1" cx="36.5" cy="17.6" r="1.5"/>
+	</g>
+	<path class="st0" d="M45,16.8c0-8.3-8.2-15.1-18.3-15.1c-2.9,0-5.6,0.6-8,1.5c-6,2.5-10,7.6-10,13.5c0,6.5,4.3,12,12.3,14.1v8.8
+		c0,3.2,2.3,5.7,5.5,5.7c3.2,0,5.5-2.6,5.5-5.7v-8.6C40,29.4,45,23.6,45,16.8z"/>
+	<path class="st0" d="M21,31.2c0,0,0.5,4.6-5.2,7.3c0,0,2.4-6,0.9-6.4"/>
+	<path class="st0" d="M32,31.2c0,0,0.2,4.6,5.9,7.3c0,0-2.4-6-0.9-6.4"/>
+	<line class="st0" x1="25" y1="35.3" x2="28" y2="35.3"/>
+	<line class="st0" x1="25" y1="39.3" x2="28" y2="39.3"/>
+</g>
+</svg>

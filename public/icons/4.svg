@@ -1,0 +1,23 @@
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="39.9px" height="47.6px" viewBox="0 0 39.9 47.6" style="enable-background:new 0 0 39.9 47.6;"
+	 xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#0f2c5b;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st1{fill:#0f2c5b;}
+</style>
+<defs>
+</defs>
+<g>
+	<path class="st0" d="M19.5,46.6c0,0,5.1,0.5,10.5-3.6s-4.6-22-6.9-23s-3.6,0.8-3.6,0.8S18.1,19,15.8,20S3.5,38.9,8.9,43
+		S19.5,46.6,19.5,46.6z"/>
+	<path class="st0" d="M31.6,37.6c4.4-2.4,7.3-6.1,7.3-10.3c0-3.5-1.9-6.6-5.1-8.9c0.1-0.9,0.2-1.7,0.2-2.6C34,7.6,27.7,1,19.9,1
+		S5.9,7.6,5.9,15.7c0,0.9,0.1,1.8,0.2,2.6C2.9,20.7,1,23.8,1,27.2c0,3.9,2.5,7.4,6.4,9.8"/>
+	<g>
+		<circle class="st1" cx="12.8" cy="14.8" r="1.8"/>
+		<circle class="st1" cx="26.6" cy="14.8" r="1.8"/>
+	</g>
+	<ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 -13.3788 19.3676)" class="st1" cx="16.7" cy="25.8" rx="1.1" ry="1.9"/>
+	<ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 -11.7521 23.2946)" class="st1" cx="22.2" cy="25.8" rx="1.9" ry="1.1"/>
+</g>
+</svg>
