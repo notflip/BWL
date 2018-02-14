@@ -123,8 +123,10 @@
         },
         computed: {
             earnings() {
+
+                // Calculate number of shots passed in combination with credits
                 return this.users.reduce((total, user) => {
-                    return Number(total) + Number(user.credits * this.price);
+                    return Number(total) + Number(user.credits * this.price) + Number(user.shots * this.price);
                 }, 0);
             },
             reversedUsers() {
@@ -164,8 +166,6 @@
                         last: this.activeUser ? this.activeUser.last : 0,
                         gender: this.activeUser ? this.activeUser.gender : this.user.gender
                     };
-
-                    console.log(data);
 
                     this.$firebaseRefs.users.child(uid).set(data);
                     this.$firebaseRefs.currentuser.remove();
