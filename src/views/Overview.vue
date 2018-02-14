@@ -9,7 +9,7 @@
                     <table class="ui very basic table">
 
                         <transition-group name="flip-list" tag="tbody">
-                            <tr v-for="(user, index) in getUsers" :key="user['.key']">
+                            <tr v-for="(user, index) in getUsers" :key="user['.key']" :class="['index-' + index]">
                                 <td>
                                     <h2 class="ui image header">
                                         <h3>{{ index + 1 }}</h3>
@@ -57,7 +57,7 @@
             Notifier
         },
         firebase: {
-            users: db.ref('users').orderByChild('shots').limitToLast(10)
+            users: db.ref('users').orderByChild('shots').limitToLast(8)
         },
         computed: {
             getUsers() {

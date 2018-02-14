@@ -10,8 +10,8 @@ $flags-image-path: '/node_modules/semantic-ui-sass/images';
 
   .logo {
     position: absolute;
-    right: 75px;
-    bottom: 75px;
+    right: 70px;
+    bottom: 30px;
 
     svg path {
       fill: white
@@ -33,14 +33,13 @@ table.table {
     color: white;
   }
   .ui.header .sub.header {
-    color: rgba(255,255,255, .6);
+    color: rgba(255, 255, 255, .6);
   }
   h3 {
     display: inline-block;
     margin-right: 1rem;
-    color: rgba(255,255,255, .5);
+    color: rgba(255, 255, 255, .5);
   }
-
 }
 
 /* Modal */
