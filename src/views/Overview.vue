@@ -22,8 +22,8 @@
                                 <td class="center aligned">
                                     <h1 class="ui header" v-if="user.shots"><i class="massive trophy icon"></i> {{ user.shots }}</h1>
                                 </td>
-                                <td v-if="user.last" class="right aligned">
-                                    <h3 class="ui header">{{ new Date(user.last) | moment("from") }}</h3>
+                                <td class="right aligned">
+                                    <h3 v-if="user.last" class="ui header">{{ new Date(user.last) | moment("from") }}</h3>
                                 </td>
                             </tr>
                         </transition-group>
