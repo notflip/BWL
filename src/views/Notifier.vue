@@ -80,13 +80,16 @@
             },
             users(users) {
 
+                // Close other modals for this one
+                if(this.modal.show) this.modal.show = false;
+
                 if (!this.modal.show) {
 
                     let newestUser = users.reduce((a, b) => a.identifier > b.identifier ? a : b, 0);
 
                     this.modal.show = true;
-                    this.modal.text = 'Bedankt ' + newestUser.name + ' om ons avontuur te steunen';
-                    this.modal.subtext = quotes[Math.floor(Math.random() * quotes.length)];
+                    this.modal.text = 'Welkom ' + newestUser.name;
+                    this.modal.subtext = 'Bedankt om ons avontuur te steunen';
 
                     setTimeout(() => {
                         this.modal.show = false;
@@ -105,7 +108,7 @@
 
                     if (bestSupporter) {
                         this.modal.show = true;
-                        this.modal.text = 'Onze beste supporter is momenteel ' + bestSupporter.name;
+                        this.modal.text = 'Bedankt aan onze grootste fan<br>' + bestSupporter.name;
                         this.modal.subtext = '';
 
                         setTimeout(() => {
