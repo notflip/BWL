@@ -19,9 +19,10 @@
     import {db} from '../firebase/firebase';
     import Modal from '../components/Modal.vue';
 
-    const modalDuration = 15 * 1000; // 15 seconds
+    // todo change these values after testing
+    const modalDuration = 8 * 1000; // 8 seconds
     const modalTimeout = 1 * 1000 * 60; // 30 minutes
-    const modalMultiplier = 0.1;
+    const modalMultiplier = 0.5;
 
     const minimumShots = 4;
 

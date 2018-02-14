@@ -52,9 +52,11 @@ $flags-image-path: '/node_modules/semantic-ui-sass/images';
     td {
       padding: 1.5rem 3rem !important;
       border: none;
-
-
     }
+  }
+
+  .ui.header > img + .content, .ui.header > .image + .content {
+    padding-left: 2rem;
   }
 
   .ui.header {
@@ -87,7 +89,6 @@ $flags-image-path: '/node_modules/semantic-ui-sass/images';
     background: transparent;
     .subtext {
       font-size: 3rem;
-      line-height: 4rem;
       color: rgba(255,255,255,.5);
     }
   }
