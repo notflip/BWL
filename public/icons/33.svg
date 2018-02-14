@@ -1,0 +1,25 @@
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="53.2px" height="40px" viewBox="0 0 53.2 40" style="enable-background:new 0 0 53.2 40;"
+	 xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#0f2c5b;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st1{fill:#0f2c5b;}
+	.st2{fill:#0f2c5b;stroke:#0f2c5b;stroke-miterlimit:10;}
+</style>
+<defs>
+</defs>
+<g>
+	<ellipse class="st0" cx="26.6" cy="20.9" rx="21.1" ry="18.2"/>
+	<g>
+		<circle class="st1" cx="16.8" cy="18.5" r="1.9"/>
+		<circle class="st1" cx="36.5" cy="18.5" r="1.9"/>
+	</g>
+	<ellipse class="st2" cx="26.6" cy="20.4" rx="2.1" ry="0.9"/>
+	<path class="st0" d="M32.1,24.5c0,0-2.7,2.4-5.6,0c-2.9,2.4-5.6,0-5.6,0"/>
+	<path class="st0" d="M17.8,5.3"/>
+	<path class="st0" d="M18.6,4c0,0-3-5.8-8.9-1.4C2.1,8.5-3.6,25.5,6.2,25.5"/>
+	<path class="st0" d="M34.6,4c0,0,3-5.8,8.9-1.4c7.6,5.8,13.3,22.8,3.5,22.8"/>
+	<circle class="st0" cx="36.5" cy="18.9" r="5.2"/>
+</g>
+</svg>
