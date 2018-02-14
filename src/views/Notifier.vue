@@ -64,7 +64,7 @@
                     // Get the highest amount of shots bought
                     let highestShot = shots.reduce((max, shot) => {
                         return shot.amount > max.amount ? shot : max;
-                    });
+                    }, {amount: 0});
 
                     // If the amount of shots is different from the previous, show the modal
                     if (highestShot.amount !== this.previous.highest && highestShot.amount > 1) {
