@@ -1,6 +1,6 @@
 <template>
     <div class="ui dimmer modals page modal-component" :class="dimmerClass" :style="{visibility, display, 'animation-duration': animationDuration+'ms'}">
-        <div class="ui modal" :class="modalClass" v-on-clickaway="clickAway" :style="{'margin-top': offsetY+'px', visibility, display,'animation-duration': animationDuration+'ms'}">
+        <div class="ui large modal" :class="modalClass" v-on-clickaway="clickAway" :style="{'margin-top': offsetY+'px', visibility, display,'animation-duration': animationDuration+'ms'}">
             <div class="content">
                 <slot name="content">
                     <p>Content</p>
@@ -37,7 +37,7 @@
         },
         animationDuration: {
             type: Number,
-            default: 500
+            default: 1000
         },
         dimmerVariation: {
             type: String,
@@ -55,7 +55,7 @@
         },
         modalTransition: {
             type: String,
-            default: 'scale',
+            default: 'fade',
             validator (value) {
                 return modalTransitions.indexOf(value) !== -1
             }
