@@ -140,8 +140,10 @@
                 if (this.isValid) {
 
                     let uid = this.currentuser.id;
+                    let user = this.findUserById(uid);
 
                     let data = {
+                        identifier: user ? user.identifier : (this.users.length ? this.users.length + 1 : 1),
                         name: this.activeUser ? this.activeUser.name : this.user.name,
                         nickname: this.activeUser ? this.activeUser.nickname : (this.user.nickname ? this.user.nickname : this.user.name),
                         credits: this.activeUser ? this.activeUser.credits : this.user.credits,
@@ -149,13 +151,19 @@
                         last: this.activeUser ? this.activeUser.last : 0,
                     };
 
-                    this.$firebaseRefs.users.child(uid).update(data);
+                    this.$firebaseRefs.users.child(uid).set(data);
                     this.$firebaseRefs.currentuser.remove();
 
                     this.user.name = '';
                     this.user.nickname = '';
                     this.user.credits = 0;
                 }
+            },
+            findUserById(id) {
+                if(this.users.length) {
+                    return this.users.find(user => user['.key'] === id);
+                }
+                return null;
             }
         }
     }
