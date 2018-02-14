@@ -20,8 +20,8 @@
     import Modal from '../components/Modal.vue';
 
     // todo change these values after testing
-    const modalDuration = 8 * 1000; // 8 seconds
-    const modalTimeout = 1 * 1000 * 60; // 30 minutes
+    const modalDuration = 10 * 1000; // 8 seconds
+    const modalTimeout = 30 * 1000 * 60; // 30 minutes
     const modalMultiplier = 0.5;
 
     const minimumShots = 4;
