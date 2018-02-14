@@ -1,27 +1,41 @@
 <template>
     <div>
-        <h1>Cashier</h1>
 
         <!-- If an NFC card is scanned -->
         <div v-if="currentuser.id">
 
             <!-- If user exists -->
-            <form v-if="activeUser" v-on:submit.prevent="saveUser()">
+            <form class="ui form" v-if="activeUser" v-on:submit.prevent="saveUser()">
 
-                <h4>Active User</h4>
+                <div class="field">
+                    <input type="text" v-model="currentuser.id" disabled required>
+                </div>
 
-                <input type="text" v-model="currentuser.id" disabled required>
+                <div class="field">
+                    <input type="text" name="name" v-model="activeUser.name" disabled required/>
+                </div>
 
-                <input type="text" name="name" v-model="activeUser.name" disabled required/>
-                <input type="text" name="name" v-model="activeUser.nickname" disabled required/>
+                <div class="field">
+                    <input type="text" name="name" v-model="activeUser.nickname" disabled required/>
+                </div>
 
-                <input type="radio" id="a-male" value="m" v-model="activeUser.gender">
-                <label for="a-male">Male</label>
-                <input type="radio" id="a-female" value="f" v-model="activeUser.gender">
-                <label for="a-female">Female</label>
+                <div class="inline fields">
+                    <div class="field">
+                        <input type="radio" id="a-male" value="m" v-model="activeUser.gender">
+                        <label for="a-male">Male</label>
+                    </div>
+                    <div class="field">
+                        <input type="radio" id="a-female" value="f" v-model="activeUser.gender">
+                        <label for="a-female">Female</label>
+                    </div>
+                </div>
 
-                <input type="number" name="credits" v-model="activeUser.credits" min="1"/>
-                <span>{{ creditsmoney }}&euro;</span>
+                <div class="field">
+                    <input type="number" name="credits" v-model="activeUser.credits" min="1"/>
+                    <div class="ui label">
+                        <i class="mail icon"></i> {{ creditsmoney }}&euro;
+                    </div>
+                </div>
 
                 <button type="submit">Update</button>
 
@@ -53,10 +67,34 @@
 
         </div>
 
+        <div class="ui container">
+            <div class="ui grid">
+                <div class="column">
+                    <h1>
+                        Cashier
+                    </h1>
+                    <div class="ui red horizontal large label">
+                        <i class="euro icon"></i> {{ earnings }}
+                    </div>
+                    <table class="ui very basic table">
+                        <thead>
+                            <tr>
+                                <th>Naam</th>
+                                <th>Credits</th>
+                                <th>Shots</th>
+                            </tr>
+                        </thead>
+                        <tr v-for="user in reversedUsers" :key="user['.key']">
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.credits }}</td>
+                            <td>{{ user.shots }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-        <ul>
-            <li v-for="user in users" v-bind:key="user['.key']">{{ user.name }} : {{ user.credits }}</li>
-        </ul>
+
     </div>
 </template>
 
@@ -77,13 +115,21 @@
             }
         },
         firebase: {
-            users: db.ref('users'),
+            users: db.ref('users').orderByChild('credits'),
             currentuser: {
                 source: db.ref('currentuser'),
                 asObject: true
             }
         },
         computed: {
+            earnings() {
+                return this.users.reduce((total, user) => {
+                    return Number(total) + Number(user.credits * this.price);
+                }, 0);
+            },
+            reversedUsers() {
+                return this.users.reverse();
+            },
             activeUser() {
                 return this.users.find(user => user['.key'] === this.currentuser.id);
             },
@@ -109,14 +155,17 @@
                 if (this.isValid) {
 
                     let uid = this.currentuser.id;
+
                     let data = {
                         name: this.activeUser ? this.activeUser.name : this.user.name,
                         nickname: this.activeUser ? this.activeUser.nickname : (this.user.nickname ? this.user.nickname : this.user.name),
                         credits: this.activeUser ? this.activeUser.credits : this.user.credits,
                         shots: this.activeUser ? this.activeUser.shots : 0,
-                        last: this.activeUser ? this.activeUser.last : null,
+                        last: this.activeUser ? this.activeUser.last : 0,
                         gender: this.activeUser ? this.activeUser.gender : this.user.gender
                     };
+
+                    console.log(data);
 
                     this.$firebaseRefs.users.child(uid).set(data);
                     this.$firebaseRefs.currentuser.remove();
