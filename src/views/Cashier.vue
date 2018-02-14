@@ -149,7 +149,7 @@
                         last: this.activeUser ? this.activeUser.last : 0,
                     };
 
-                    this.$firebaseRefs.users.child(uid).set(data);
+                    this.$firebaseRefs.users.child(uid).update(data);
                     this.$firebaseRefs.currentuser.remove();
 
                     this.user.name = '';
