@@ -3,7 +3,8 @@
         <template slot="content">
 
             <h1 class="ui header inverted">
-                <i class="alarm icon"></i>
+                <img v-if="modal.image" :src="modal.image" alt="">
+                <i v-else class="alarm icon"></i>
                 <div class="content">
                     <div class="text" v-html="modal.text"></div>
                     <div class="subtext" v-html="modal.subtext"></div>
@@ -19,10 +20,9 @@
     import {db} from '../firebase/firebase';
     import Modal from '../components/Modal.vue';
 
-    // todo change these values after testing
-    const modalDuration = 10 * 1000; // 8 seconds
-    const modalTimeout = 30 * 1000 * 60; // 30 minutes
-    const modalMultiplier = 0.5;
+    const modalDuration = 10 * 1000; // 10 seconds
+    const modalTimeout = 2.5 * 1000 * 60; // 30 minutes
+    const modalMultiplier = 0.25;
 
     const minimumShots = 4;
 
@@ -40,6 +40,7 @@
                 shots: [],
                 modal: {
                     show: false,
+                    image: '',
                     text: '',
                     subtext: '',
                     color: ''
@@ -75,11 +76,12 @@
 
                     setTimeout(() => {
                         this.modal.show = false;
-                    }, modalDuration * modalMultiplier)
+                    }, modalDuration)
                 }
             },
             users(users) {
 
+                // Welcome the new user
                 // Close other modals for this one
                 if(this.modal.show) this.modal.show = false;
 
@@ -88,12 +90,13 @@
                     let newestUser = users.reduce((a, b) => a.identifier > b.identifier ? a : b, 0);
 
                     this.modal.show = true;
+                    this.modal.image = './public/icons/' + newestUser.identifier + '.svg';
                     this.modal.text = 'Welkom ' + newestUser.name;
                     this.modal.subtext = 'Bedankt om ons avontuur te steunen';
 
                     setTimeout(() => {
                         this.modal.show = false;
-                    }, modalDuration * modalMultiplier)
+                    }, modalDuration)
                 }
             }
         },
@@ -113,7 +116,7 @@
 
                         setTimeout(() => {
                             this.modal.show = false;
-                        }, modalDuration * modalMultiplier)
+                        }, modalDuration)
                     }
                 }
             },
