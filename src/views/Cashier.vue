@@ -12,11 +12,11 @@
                 </div>
 
                 <div class="field">
-                    <input type="text" name="name" v-model="activeUser.name" disabled required/>
+                    <input type="text" name="name" v-model="activeUser.name" disabled required maxlength="25"/>
                 </div>
 
                 <div class="field">
-                    <input type="text" name="name" v-model="activeUser.nickname" disabled required/>
+                    <input type="text" name="name" v-model="activeUser.nickname" disabled required maxlength="25"/>
                 </div>
 
                 <div class="field">
@@ -38,7 +38,7 @@
                 <input type="text" v-model="currentuser.id" disabled required>
 
                 <label>Name</label>
-                <input type="text" name="name" v-model="user.name" required/>
+                <input type="text" name="name" v-model="user.name" required autofocus />
                 <label>Nickname</label>
                 <input type="text" name="name" v-model="user.nickname"/>
 

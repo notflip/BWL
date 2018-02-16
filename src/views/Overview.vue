@@ -30,10 +30,10 @@
                                         </div>
                                     </h2>
                                 </td>
-                                <td class="center aligned">
+                                <td class="left aligned">
                                     <h1 class="ui header" v-if="user.shots"><i class="massive trophy icon"></i> {{ user.shots }}</h1>
                                 </td>
-                                <td class="right aligned">
+                                <td class="left aligned">
                                     <h3 v-if="user.last" class="ui header">{{ new Date(user.last) | moment("from") }}</h3>
                                 </td>
                             </tr>

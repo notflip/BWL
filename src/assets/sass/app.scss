@@ -53,7 +53,7 @@ $flags-image-path: '/node_modules/semantic-ui-sass/images';
     &:nth-child(2) td .icon {color: rgba(255,255,255,.5)}
     &:nth-child(3) td .icon {color: rgba(255,255,255,.2)}
     td {
-      padding: 1.5rem 3rem !important;
+      padding: 1rem 2rem !important;
       border: none;
       border-bottom: 1px solid rgba(255,255,255,0.2);
     }
@@ -62,7 +62,6 @@ $flags-image-path: '/node_modules/semantic-ui-sass/images';
   .ui.header > img + .content, .ui.header > .image + .content {
     padding-left: 2rem;
   }
-
   .ui.header {
     color: white;
   }
@@ -104,45 +103,24 @@ $flags-image-path: '/node_modules/semantic-ui-sass/images';
   .ui.header > .icon + .content {
     padding-left: 2rem;
   }
+
+  .ui.header > img + .content, .ui.header > .image + .content {
+    padding-left: 2rem;
+  }
 }
+
+/*
+@media only screen and (min-width: 1200px) {
+  .ui.large.modal {
+    width: 1400px;
+    margin-left: -700px
+  }
+}
+*/
+
 
 .ui.dimmer {
-  opacity: 1;
-}
-
-/* Anims */
-@-webkit-keyframes Gradient {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
-  }
-}
-
-@-moz-keyframes Gradient {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
-  }
-}
-
-@keyframes Gradient {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
+  &--drink {
+    background: url('/public/drink.jpg') no-repeat center center/cover;
   }
 }
