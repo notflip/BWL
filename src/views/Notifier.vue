@@ -28,10 +28,6 @@
 
     const minimumShots = 4;
 
-    const quotes = [
-        '&quot;Alcohol may be man\'s worst enemy, but the bible says love your enemy&quot;'
-    ];
-
     export default {
         components: {
             Modal
@@ -119,33 +115,13 @@
                     if (newestShot.amount > minimumShots) {
                         this.modal.show = true;
                         this.modal.image = './public/icons/' + this.findUserById(newestShot.userid).identifier + '.svg';
-                        this.modal.text = newestShot.amount + ' shots besteld door <br><span class="capitalize">' + this.findUserById(newestShot.userid).nickname + '</span>';
-                        this.modal.subtext = quotes[Math.floor(Math.random() * quotes.length)];
+                        this.modal.text = 'Woop! ' + newestShot.amount + ' shots besteld door <br>';
+                        this.modal.subtext = '<span class="capitalize">' + this.findUserById(newestShot.userid).nickname + '</span>';
                     }
 
                     setTimeout(() => {
                         this.modal.show = false;
                     }, modalDuration)
-                }
-            },
-            checkBestSupporter() {
-
-                if (!this.modal.show) {
-
-                    let bestSupporter = this.users
-                        .filter(user => user.credits > 0)
-                        .reduce((a, b) => a.credits > b.credits ? a : b);
-
-                    if (bestSupporter) {
-                        this.modal.show = true;
-                        this.modal.image = './public/icons/' + bestSupporter.identifier + '.svg';
-                        this.modal.text = 'Bedankt aan onze grootste supporter<br>' + bestSupporter.nickname;
-                        this.modal.subtext = '';
-
-                        setTimeout(() => {
-                            this.modal.show = false;
-                        }, modalDuration)
-                    }
                 }
             },
             checkBestDrinker() {
@@ -159,8 +135,8 @@
                     if (bestDrinker) {
                         this.modal.show = true;
                         this.modal.image = './public/icons/' + bestDrinker.identifier + '.svg';
-                        this.modal.text = 'De shotmeester van de avond is <br>' + bestDrinker.nickname;
-                        this.modal.subtext = '';
+                        this.modal.text = 'De shotmeester van de avond is <br>';
+                        this.modal.subtext = bestDrinker.nickname;
 
                         setTimeout(() => {
                             this.modal.show = false;
